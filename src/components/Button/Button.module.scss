@@ -1,0 +1,29 @@
+@use "../../scss/abstracts" as a;
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  // margin-top: 1rem;
+  border-color: a.$borderGreen;
+  text-decoration: none;
+  background-color: a.$borderGreen;
+  color: a.$fontWhite;
+  &.noBorder {
+    border: none;
+    text-decoration: underline;
+  }
+  &.buttonEdit {
+    width: auto;
+    padding: 6px;
+    font-size: 0.83rem;
+    min-width: 59px;
+  }
+  &.buttonTransaction{
+    min-width: 200px;
+  }
+}
