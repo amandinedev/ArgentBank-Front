@@ -1,0 +1,16 @@
+@use "../../scss/abstracts" as a;
+
+.homeContainer{
+    display: flex;
+    flex-direction: column;
+}
+.homeCardsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 920px) {
+  .homeCardsContainer {
+    flex-direction: row;
+  }
+}
