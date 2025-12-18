@@ -1,0 +1,53 @@
+@use "../../scss/abstracts" as a;
+
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  h1 {
+    color: a.$fontWhite;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .inputSection {
+    display: flex;
+    gap: 10px;
+    margin: auto;
+    .inputContainer {
+      display: flex;
+      flex-direction: column;
+      width: 85%;
+    }
+     .left {
+        align-items: end;
+      }
+      .right{
+        align-items: start;
+      }
+    .input {
+      padding: 6px;
+      width: 85%;
+    }
+    .inputError {
+      color: red;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding-top: 5px;
+      width: 85%;
+      text-align: center;
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+}

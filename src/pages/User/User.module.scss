@@ -1,0 +1,19 @@
+.userContainer {
+  width: 100vw;
+  height: auto;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  gap: 2rem;
+}
+
+.userAccountSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  gap: 2rem;
+}

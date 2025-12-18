@@ -1,0 +1,46 @@
+@use "../../scss/abstracts" as a;
+
+.account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid a.$borderDark;
+  background-color: a.$bgWhite;
+  width: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  text-align: center;
+  gap: 10px;
+}
+
+.accountAmount {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.accountAmountDescription {
+  margin: 0;
+}
+
+.accountTitle {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.accountContentWrapper {
+  width: 100%;
+  flex: 1;
+}
+
+@media (min-width: 720px) {
+  .account {
+    flex-direction: row;
+    text-align: left;
+  }
+
+}

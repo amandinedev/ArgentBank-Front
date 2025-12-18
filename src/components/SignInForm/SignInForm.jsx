@@ -18,7 +18,7 @@ const SignInForm = () => {
     e.preventDefault();
     try {
       await dispatch(loginUser({ email: username, password })).unwrap();
-      navigate("/user");
+      navigate("/profil");
     } catch (error) {
       console.error("Failed to login:", error);
     }

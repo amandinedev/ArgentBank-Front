@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { Link, useNavigate } from "react-router-dom"; 
 import { useSelector, useDispatch } from 'react-redux';
 import styles from "./MainNav.module.scss";
 import logo from "../../assets/argentBankLogo.png";
@@ -13,7 +13,7 @@ import { selectIsAuthenticated, logout } from '../../features/authSlice';
 
 const MainNav = () => {
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsAuthenticated);
   const firstName = useSelector((state) => (isLoggedIn ? state.user.userProfile?.firstName : ''));
@@ -41,7 +41,6 @@ const MainNav = () => {
             <FontAwesomeIcon icon={faCircleUser} />
             <span>{firstName}</span>
             </div>
-
             <Link to="/" onClick={handleSignOut}>
               <FontAwesomeIcon icon={faRightFromBracket} />  Sign Out
             </Link>

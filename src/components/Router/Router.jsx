@@ -18,7 +18,7 @@ const Router = () => {
             </Layout>} />
           <Route path="/sign-in" element={
              <Layout ><SignIn /></Layout>} />
-          <Route path="/user" element={<Layout><User /></Layout>} />
+          <Route path="/profil" element={<Layout><User /></Layout>} />
           {/* This will catch all undefined routes */}
           {/* <Route path="/*" element={<Error404 />} /> */}
         </Routes>
