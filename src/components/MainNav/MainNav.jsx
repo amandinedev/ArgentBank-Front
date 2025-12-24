@@ -8,8 +8,8 @@ import {
   faCircleUser,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { fetchUserProfile } from '../../features/userSlice';
-import { selectIsAuthenticated, logout } from '../../features/authSlice';
+import { fetchUserProfile } from '../../reduxFeatures/userSlice';
+import { selectIsAuthenticated, logout } from '../../reduxFeatures/authSlice';
 
 const MainNav = () => {
 

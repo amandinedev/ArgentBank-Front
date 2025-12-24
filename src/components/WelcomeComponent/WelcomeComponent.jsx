@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./WelcomeComponent.module.scss";
 import Button from "../Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile, updateUserProfile } from "../../features/userSlice";
+import { fetchUserProfile, updateUserProfile } from "../../reduxFeatures/userSlice";
 
 const Welcome = () => {
   const dispatch = useDispatch();

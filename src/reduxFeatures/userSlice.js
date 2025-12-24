@@ -1,8 +1,9 @@
+// userSlice.js - Manages user profile state and related actions using Redux Toolkit
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { selectCurrentToken } from "./authSlice";
 
-// Async thunk for fetching user profile
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchUserProfile",
   async (_, { getState, rejectWithValue }) => {
@@ -31,7 +32,6 @@ export const fetchUserProfile = createAsyncThunk(
   }
 );
 
-// Async thunk for updating user profile
 export const updateUserProfile = createAsyncThunk(
   "user/updateUserProfile",
   async ({ firstName, lastName }, { getState, rejectWithValue }) => {

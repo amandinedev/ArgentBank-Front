@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  width: 85%;
 
   h1 {
     color: a.$fontWhite;
@@ -26,12 +27,12 @@
       flex-direction: column;
       width: 85%;
     }
-     .left {
-        align-items: end;
-      }
-      .right{
-        align-items: start;
-      }
+    .left {
+      align-items: end;
+    }
+    .right {
+      align-items: start;
+    }
     .input {
       padding: 6px;
       width: 85%;
@@ -49,5 +50,11 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+  }
+}
+
+@media (min-width: 920px) {
+  .welcomeContainer {
+    width: 35%;
   }
 }
