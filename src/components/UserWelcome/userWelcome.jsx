@@ -1,15 +1,15 @@
-// src/components/WelcomeComponent/WelcomeComponent.jsx
-
 import React, { useEffect, useState } from "react";
-import styles from "./WelcomeComponent.module.scss";
+import styles from "./UserWelcome.module.scss";
 import Button from "../Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile, updateUserProfile } from "../../reduxFeatures/userSlice";
+import { selectIsAuthenticated } from "../../reduxFeatures/authSlice"; 
 
-const Welcome = () => {
+const UserWelcome = () => {
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.user.userProfile);
   const error = useSelector((state) => state.user.error);
+  const isAuthenticated = useSelector(selectIsAuthenticated); 
 
   // Local component state to manage display and edit modes
   const [isEditing, setIsEditing] = useState(false);
@@ -29,8 +29,8 @@ const Welcome = () => {
   const nameRegex = /^[a-zA-Zàáâäãåèéêëìíîïòóôöõùúûüÿŷßçñ-]+$/;
 
   useEffect(() => {
-    if (!userProfile) dispatch(fetchUserProfile());
-  }, [dispatch, userProfile]);
+    if (isAuthenticated && !userProfile) dispatch(fetchUserProfile());
+  }, [dispatch, userProfile, isAuthenticated]);
 
   useEffect(() => {
     if (error && !isEditing) console.error("Error fetching profile:", error);
@@ -84,7 +84,7 @@ const Welcome = () => {
       console.error("Failed to save profile:", updateError);
     }
   };
-  
+
   const handleCancelClick = () => {
     setIsEditing(false);
     if (userProfile) {
@@ -93,7 +93,8 @@ const Welcome = () => {
     }
   };
 
-  if (!userProfile && !isEditing) return <div>Loading...</div>;
+  // Display a message or redirect if the user is not authenticated
+  if (!isAuthenticated && !isEditing) return <div>Please log in to view your profile.</div>;
 
   if (isEditing) {
     return (
@@ -156,4 +157,4 @@ const Welcome = () => {
   );
 };
 
-export default Welcome;
+export default UserWelcome;

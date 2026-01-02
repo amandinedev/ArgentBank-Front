@@ -5,7 +5,7 @@ import styles from "./SignInForm.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, selectError } from "../../reduxFeatures/authSlice";
+import { loginUser, selectError,  selectCurrentToken  } from "../../reduxFeatures/authSlice";
 
 const SignInForm = () => {
   const [username, setUsername] = useState("");
@@ -26,11 +26,17 @@ const SignInForm = () => {
     }
   }, []);
 
+  // Log the token when it changes
+  const token = useSelector(selectCurrentToken);
+  useEffect(() => {
+    console.log("Token:", token);
+  }, [token]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await dispatch(loginUser({ email: username, password })).unwrap();
-      navigate("/profil");
+      navigate("/profile");
       if (isChecked) {
         localStorage.setItem("rememberedUsername", username);
       } else {

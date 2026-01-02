@@ -1,9 +1,9 @@
 import React from "react";
-import WelcomeComponent from "../../components/WelcomeComponent/WelcomeComponent";
+import UserWelcome from "../../components/UserWelcome/userWelcome";
 import UserCard from "../../components/UserCard/UserCard";
-import styles from "./User.module.scss";
+import styles from "./UserProfile.module.scss";
 
-const User = () => {
+const UserProfile = () => {
   const userAccountData = [
     {
       title: "Argent Bank Checking (x8349)",
@@ -25,7 +25,7 @@ const User = () => {
   return (
     <>
     <div className={styles.userContainer}>
-      <WelcomeComponent />
+      <UserWelcome />
     <div className={styles.userAccountSection}>
       {userAccountData.map((data, index) => (
         <UserCard key={index} userAccountData={data} />
@@ -35,4 +35,4 @@ const User = () => {
     </>
   );
 };
-export default User;
+export default UserProfile;
