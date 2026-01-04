@@ -22,9 +22,10 @@
       display: flex;
       justify-content: center;
       color: a.$fontDark;
-    }
+      text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
+  }
   }
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"; 
-import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./MainNav.module.scss";
 import logo from "../../assets/argentBankLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,17 +8,17 @@ import {
   faCircleUser,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { fetchUserProfile } from '../../reduxFeatures/userSlice';
-import { selectIsAuthenticated, logout } from '../../reduxFeatures/authSlice';
+import { fetchUserProfile } from "../../reduxFeatures/userSlice";
+import { selectIsAuthenticated, logout } from "../../reduxFeatures/authSlice";
 
 const MainNav = () => {
-
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsAuthenticated);
-  const firstName = useSelector((state) => (isLoggedIn ? state.user.userProfile?.firstName : ''));
+  const firstName = useSelector((state) =>
+    isLoggedIn ? state.user.userProfile?.firstName : ""
+  );
 
-  // Fetch user profile when the component mounts and user is authenticated
   useEffect(() => {
     if (isLoggedIn && !firstName) {
       dispatch(fetchUserProfile());
@@ -26,8 +26,8 @@ const MainNav = () => {
   }, [dispatch, isLoggedIn, firstName]);
 
   const handleSignOut = () => {
-    dispatch(logout()); // Dispatch logout action to update state and navigate away
-    navigate('/'); // Navigate to the home page after signing out
+    dispatch(logout()); 
+    navigate("/"); 
   };
 
   return (
@@ -37,19 +37,28 @@ const MainNav = () => {
       <nav className={styles.links}>
         {isLoggedIn ? (
           <>
-          <div>
-            <FontAwesomeIcon icon={faCircleUser} />
-            <span>{firstName}</span>
+            <div>
+              <FontAwesomeIcon icon={faCircleUser} />
+              <span>{firstName}</span>
             </div>
-            <Link to="/" onClick={handleSignOut}>
-              <FontAwesomeIcon icon={faRightFromBracket} />  Sign Out
+            <Link
+              tabIndex={0} 
+              to="/"
+              onClick={handleSignOut}
+              onKeyDown={(e) => e.key === "Enter" && handleSignOut()}
+            >
+              <FontAwesomeIcon icon={faRightFromBracket} /> Sign Out
             </Link>
           </>
         ) : (
           <>
-            <Link to="/sign-in">
+            <Link
+              tabIndex={0} 
+              to="/sign-in"
+              onKeyDown={(e) => e.key === "Enter" && navigate("/sign-in")}
+            >
               <FontAwesomeIcon icon={faCircleUser} />
-                Sign In
+              Sign In
             </Link>
           </>
         )}
