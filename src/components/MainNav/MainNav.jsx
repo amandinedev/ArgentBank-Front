@@ -26,8 +26,8 @@ const MainNav = () => {
   }, [dispatch, isLoggedIn, firstName]);
 
   const handleSignOut = () => {
-    dispatch(logout()); 
-    navigate("/"); 
+    dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -42,7 +42,7 @@ const MainNav = () => {
               <span>{firstName}</span>
             </div>
             <Link
-              tabIndex={0} 
+              tabIndex={0}
               to="/"
               onClick={handleSignOut}
               onKeyDown={(e) => e.key === "Enter" && handleSignOut()}
@@ -53,7 +53,7 @@ const MainNav = () => {
         ) : (
           <>
             <Link
-              tabIndex={0} 
+              tabIndex={0}
               to="/sign-in"
               onKeyDown={(e) => e.key === "Enter" && navigate("/sign-in")}
             >

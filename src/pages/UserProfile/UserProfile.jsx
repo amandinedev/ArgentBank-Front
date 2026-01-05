@@ -21,16 +21,16 @@ const UserProfile = () => {
       description: "Current Balance",
     },
   ];
-  
+
   return (
     <>
-    <div className={styles.userContainer}>
-      <UserWelcome />
-    <div className={styles.userAccountSection}>
-      {userAccountData.map((data, index) => (
-        <UserCard key={index} userAccountData={data} />
-      ))}
-      </div>
+      <div className={styles.userContainer}>
+        <UserWelcome />
+        <div className={styles.userAccountSection}>
+          {userAccountData.map((data, index) => (
+            <UserCard key={index} userAccountData={data} />
+          ))}
+        </div>
       </div>
     </>
   );

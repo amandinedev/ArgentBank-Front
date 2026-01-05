@@ -98,5 +98,6 @@ const userSlice = createSlice({
 });
 
 export const selectUserProfile = (state) => state.user.userProfile;
+export const selectUserError = (state) => state.user.error;
 
 export default userSlice.reducer;

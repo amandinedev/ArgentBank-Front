@@ -2,14 +2,19 @@ import React, { useEffect, useState } from "react";
 import styles from "./UserWelcome.module.scss";
 import Button from "../Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile, updateUserProfile } from "../../reduxFeatures/userSlice";
-import { selectIsAuthenticated } from "../../reduxFeatures/authSlice"; 
+import {
+  fetchUserProfile,
+  updateUserProfile,
+  selectUserProfile,
+  selectUserError,
+} from "../../reduxFeatures/userSlice";
+import { selectIsAuthenticated } from "../../reduxFeatures/authSlice";
 
 const UserWelcome = () => {
   const dispatch = useDispatch();
-  const userProfile = useSelector((state) => state.user.userProfile);
-  const error = useSelector((state) => state.user.error);
-  const isAuthenticated = useSelector(selectIsAuthenticated); 
+  const userProfile = useSelector(selectUserProfile);
+  const error = useSelector(selectUserError);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   // Local component state to manage display and edit modes
   const [isEditing, setIsEditing] = useState(false);
@@ -32,10 +37,6 @@ const UserWelcome = () => {
     if (isAuthenticated && !userProfile) dispatch(fetchUserProfile());
   }, [dispatch, userProfile, isAuthenticated]);
 
-  useEffect(() => {
-    if (error && !isEditing) console.error("Error fetching profile:", error);
-  }, [error, isEditing]);
-
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -56,7 +57,6 @@ const UserWelcome = () => {
     } else if (!fieldValue.match(nameRegex)) {
       errorMessage = "Numbers and special characters not allowed";
     }
-
     return errorMessage;
   };
 
@@ -76,13 +76,9 @@ const UserWelcome = () => {
       return;
     }
 
-    try {
-      dispatch(updateUserProfile({ firstName, lastName }));
-      setIsEditing(false);
-      setErrorMessages({ firstName: "", lastName: "" });
-    } catch (updateError) {
-      console.error("Failed to save profile:", updateError);
-    }
+    dispatch(updateUserProfile({ firstName, lastName }));
+    setIsEditing(false);
+    setErrorMessages({ firstName: "", lastName: "" });
   };
 
   const handleCancelClick = () => {
@@ -93,12 +89,10 @@ const UserWelcome = () => {
     }
   };
 
-  // Display a message or redirect if the user is not authenticated
-  if (!isAuthenticated && !isEditing) return <div>Please log in to view your profile.</div>;
-
   if (isEditing) {
     return (
       <div className={styles.welcomeContainer}>
+        {error && <p>{error}</p>}
         <h1>Welcome back</h1>
         <form className={styles.formContainer} onSubmit={handleSaveClick}>
           <div className={styles.inputSection}>
@@ -144,13 +138,11 @@ const UserWelcome = () => {
 
   return (
     <div className={styles.welcomeContainer}>
+      {error && <p>{error}</p>}
       <h1>
         Welcome back
         <br />
-        {userProfile
-          ? `${userProfile.firstName} ${userProfile.lastName}`
-          : "Guest"}
-        !
+        {userProfile ? `${userProfile.firstName} ${userProfile.lastName}` : ""}!
       </h1>
       <Button edit={true} text="Edit Name" onClick={handleEditClick} />
     </div>

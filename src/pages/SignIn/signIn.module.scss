@@ -1,10 +1,9 @@
 @use "../../scss/abstracts" as a;
 
-.signInContainer{
-    display: flex;
-    justify-content: center;
-    background-color: a.$bgDark;
-    height: 80vh;
-    width: 100vw;
-
+.signInContainer {
+  display: flex;
+  justify-content: center;
+  background-color: a.$bgDark;
+  height: 80vh;
+  width: 100vw;
 }

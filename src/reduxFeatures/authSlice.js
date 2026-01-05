@@ -11,9 +11,6 @@ export const loginUser = createAsyncThunk(
         "http://localhost:3001/api/v1/user/login",
         { email, password }
       );
-      // if (response.data && response.data.body && response.data.body.token) {
-      //   sessionStorage.setItem("token", response.data.body.token);
-      // }
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Login failed");
@@ -25,29 +22,28 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
-    token: null, 
-    // Initialize based on the presence of a token
-    isAuthenticated: false, 
+    token: null,
+    isAuthenticated: false,
     status: "idle",
     error: null,
   },
   reducers: {
     logout: (state) => {
       state.user = null;
-      state.token = null; // clear token in redux store
-      state.isAuthenticated = false; 
+      state.token = null;
+      state.isAuthenticated = false;
     },
   },
   extraReducers: (builder) => {
     builder
-       .addCase(loginUser.pending, (state) => {
-        state.status = "loading"; // Optionally update status to loading
+      .addCase(loginUser.pending, (state) => {
+        state.status = "loading";
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.body;
         // Ensure token is saved correctly
-        state.token = action.payload.body.token; 
-        state.isAuthenticated = true; 
+        state.token = action.payload.body.token;
+        state.isAuthenticated = true;
         state.status = "succeeded";
         state.error = null; // Clear any previous errors on successful login
       })
@@ -61,6 +57,6 @@ const authSlice = createSlice({
 export const { logout } = authSlice.actions;
 
 export const selectCurrentToken = (state) => state.auth.token;
-export const selectError = (state) => state.auth.error;
-export const selectIsAuthenticated = (state) => state.auth.isAuthenticated; 
+export const selectAuthError = (state) => state.auth.error;
+export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 export default authSlice.reducer;

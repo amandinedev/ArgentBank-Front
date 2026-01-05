@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from "../../components/Hero/Hero";
+import Hero from "../../components/Hero/Hero";
 import HomeCard from "../../components/HomeCard/HomeCard";
 import styles from "./Home.module.scss";
 
@@ -27,12 +27,12 @@ const Home = () => {
 
   return (
     <div className={styles.homeContainer}>
-      <Banner />
+      <Hero />
       <div className={styles.HomeCardsContainer}>
         <h2 className={styles.srOnly}>HomeCards</h2>
         {homeData.map((data, index) => (
-        <HomeCard key={index} homeData={data} />
-      ))}
+          <HomeCard key={index} homeData={data} />
+        ))}
       </div>
     </div>
   );

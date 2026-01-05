@@ -22,6 +22,17 @@
   p {
     font-size: 1.1em;
     font-weight: bold;
-    color: a.$fontWhite
+    color: a.$fontWhite;
+  }
+}
+
+@media (min-width: 920px) {
+  .errorContainer {
+    h1 {
+      font-size: 3em;
+    }
+    p {
+      font-size: 1.65em;
+    }
   }
 }

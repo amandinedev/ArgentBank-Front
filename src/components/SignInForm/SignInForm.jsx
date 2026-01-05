@@ -5,15 +5,19 @@ import styles from "./SignInForm.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, selectError,  selectCurrentToken  } from "../../reduxFeatures/authSlice";
+import {
+  loginUser,
+  selectAuthError,
+  selectCurrentToken,
+} from "../../reduxFeatures/authSlice";
 
 const SignInForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false); //controls if username should be remembered
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector(selectError);
+  const error = useSelector(selectAuthError);
 
   // Load the username from localStorage asynchronously
   useEffect(() => {
@@ -26,7 +30,7 @@ const SignInForm = () => {
     }
   }, []);
 
-  // Log the token when it changes
+  //uncoment to log the token when it changes
   const token = useSelector(selectCurrentToken);
   useEffect(() => {
     console.log("Token:", token);
@@ -37,6 +41,7 @@ const SignInForm = () => {
     try {
       await dispatch(loginUser({ email: username, password })).unwrap();
       navigate("/profile");
+
       if (isChecked) {
         localStorage.setItem("rememberedUsername", username);
       } else {
