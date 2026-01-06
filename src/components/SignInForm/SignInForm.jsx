@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   loginUser,
   selectAuthError,
+  selectAuthStatus,
   selectCurrentToken,
 } from "../../reduxFeatures/authSlice";
 
@@ -18,6 +19,7 @@ const SignInForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const error = useSelector(selectAuthError);
+  const status = useSelector(selectAuthStatus);
 
   // Load the username from localStorage asynchronously
   useEffect(() => {
@@ -56,6 +58,7 @@ const SignInForm = () => {
     <section className={styles.signInContent}>
       <FontAwesomeIcon icon={faCircleUser} />
       <h1>Sign In</h1>
+      {status === "loading" && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className={styles.inputWrapper}>

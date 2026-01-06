@@ -58,5 +58,6 @@ export const { logout } = authSlice.actions;
 
 export const selectCurrentToken = (state) => state.auth.token;
 export const selectAuthError = (state) => state.auth.error;
+export const selectAuthStatus = (state) => state.auth.status;
 export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 export default authSlice.reducer;

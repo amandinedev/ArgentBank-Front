@@ -7,6 +7,7 @@ import {
   updateUserProfile,
   selectUserProfile,
   selectUserError,
+  selectUserStatus,
 } from "../../reduxFeatures/userSlice";
 import { selectIsAuthenticated } from "../../reduxFeatures/authSlice";
 
@@ -14,6 +15,7 @@ const UserWelcome = () => {
   const dispatch = useDispatch();
   const userProfile = useSelector(selectUserProfile);
   const error = useSelector(selectUserError);
+  const status = useSelector(selectUserStatus);
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
   // Local component state to manage display and edit modes
@@ -92,6 +94,7 @@ const UserWelcome = () => {
   if (isEditing) {
     return (
       <div className={styles.welcomeContainer}>
+        {status === "loading" && <p>Loading...</p>}
         {error && <p>{error}</p>}
         <h1>Welcome back</h1>
         <form className={styles.formContainer} onSubmit={handleSaveClick}>
@@ -138,6 +141,7 @@ const UserWelcome = () => {
 
   return (
     <div className={styles.welcomeContainer}>
+      {status === "loading" && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <h1>
         Welcome back
